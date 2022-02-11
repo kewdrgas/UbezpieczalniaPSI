@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <h2>Ubezpieczenia</h2>
+
+    {% for ubezpieczenie in ubezpieczenie %}
+    <p>{{ ubezpieczenie.tytul }}</p>
+    {% endfor %} {% if ubezpieczenie|length == 0 %}
+    <h2>Brak ubezpieczeń</h2>
+    {% else %}
+    <!--<h2>Ilość ubezpieczeń w BD: {{ ubezpieczenie|length }}</h2>-->
+
+    {% for ubezpieczenie in ubezpieczenie %}
+    <div class="card">
+      <div class="card-body">
+        <img src="/media/{{ubezpieczenie.plakat}}" class="film-plakat" />
+        <div class="row">
+          <div class="col-9">
+            <h5 class="card-title">{{ ubezpieczenie.title }}</h5>
+          </div>
+        </div>
+        <div class="row">
+          <p class="card-text opis">{{ ubezpieczenie.opis }}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %} {% endif %}
+  </body>
+</html>
