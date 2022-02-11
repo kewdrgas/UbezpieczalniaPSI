@@ -121,9 +121,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS =['styles', 'assets']
+STATICFILES_DIRS =['styles', 'assets', 'plakaty']
 
-MEDIA_URL = '/media/'
+MEDIA_URL = '/plakaty/'
 MEDIA_ROOT = 'plakaty'
 
 LOGIN_URL = 'login'

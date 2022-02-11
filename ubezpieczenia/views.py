@@ -36,6 +36,9 @@ def ocena_ubezpieczenia(request):
 
 
     return render(request, 'ocena.html', {'form': form})
+def ubezpieczenie(request, id):
+    ubezpieczenie = get_object_or_404(Ubezpieczenie, pk=id)
+    return render(request,'ubezpieczenie.html', {'ubezpieczenie': ubezpieczenie})
 
 @login_required
 def nowe_ubezpieczenie(request):
