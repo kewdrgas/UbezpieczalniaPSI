@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Ubezpieczenie
-from .forms import UbezpieczenieForm, OcenaForm #, MySignupForm
+from .forms import UbezpieczenieForm, OcenaForm, ZamowieniaForm #, MySignupForm
 from django.contrib.auth.decorators import login_required
 
 def test_response(request):
@@ -37,6 +37,14 @@ def ocena_ubezpieczenia(request):
 
     return render(request, 'ocena.html', {'form': form})
 
+'''
+def zlozenie_zamowienia(request):
+    form = ZamowieniaForm(request.POST or None, request.FILES or None)
+    if form.is_valid():
+        form.save()
+    return render(request, 'zamowienie.html', {'form': form})
+'''
+
 @login_required
 def nowe_ubezpieczenie(request):
     ubezpieczenie = (Ubezpieczenie)
@@ -72,8 +80,40 @@ def usun_ubezpieczenie(request, id):
 
 
     return render(request, 'potwierdzenie.html', {'ubezpieczenie': ubezpieczenie})
+'''
+@login_required
+def zlozenie_zamowienia(request, id):
+    ubezpieczenie = get_object_or_404(Ubezpieczenie, pk=id)
+    ubezpieczenie = UbezpieczenieForm(request.POST or None, request.FILES or None, instance=ubezpieczenie)
 
+    if ubezpieczenie.is_valid():
+        ubezpieczenie.save()
 
+        return redirect(index)
+    
 
+    return render(request, 'zamowienie.html', {'ubezpieczenie': ubezpieczenie})
+'''
 
+def zlozenie_zamowienia(request):
+    form = ZamowieniaForm(request.POST or None, request.FILES or None)
+    if form.is_valid():
+        form.save()
+    return render(request, 'zamowienie.html', {'form': form})
+'''
 
+hbkbkb
+@login_required
+def zlozenie_zamowienia(request, id):
+    ubezpieczenie = get_object_or_404(Ubezpieczenie, pk=id)
+    ubezpieczenie = UbezpieczenieForm(request.POST or None, request.FILES or None, instance=ubezpieczenie)
+
+    if ubezpieczenie.is_valid():
+        ubezpieczenie.save()
+
+        return redirect(index)
+    ubezpieczenie = get_object_or_404(Ubezpieczenie, pk=id)
+
+    return render(request, 'ubezpieczenie.html', {'ubezpieczenie': ubezpieczenie})
+    return render(request, 'zamowienie.html', {'ubezpieczenie': ubezpieczenie})
+'''

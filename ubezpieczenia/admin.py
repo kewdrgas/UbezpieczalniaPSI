@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Ubezpieczenie
-from .models import Ubezpieczenie, DodatkoweInfo, Ocena, Obiekt_ubezpieczony
+from .models import Ubezpieczenie, DodatkoweInfo, Ocena, Obiekt_ubezpieczony, Zamowienia
 #admin.site.register(Ubezpieczenie)
 
 @admin.register(Ubezpieczenie)
@@ -14,3 +14,4 @@ class UbezpiecznieAdmin(admin.ModelAdmin):
 admin.site.register(DodatkoweInfo)
 admin.site.register(Obiekt_ubezpieczony)
 admin.site.register(Ocena)
+admin.site.register(Zamowienia)

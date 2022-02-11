@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.forms import ModelForm
-from .models import Ocena, Ubezpieczenie
+from .models import Ocena, Ubezpieczenie, Zamowienia
 
 class OcenaForm(ModelForm):
     class Meta:
@@ -14,6 +14,10 @@ class UbezpieczenieForm(ModelForm):
        model = Ubezpieczenie
        fields = ['tytul', 'opis', 'premiera', 'data_zakonczenia', 'znizka', 'kategoria', 'plakat', 'dodatkowe']
 
+class ZamowieniaForm(ModelForm):
+    class Meta:
+        model = Zamowienia
+        fields = ['imie', 'nazwisko', 'ubezpieczenie', 'dodadkowy_opis' , 'dane_kontaktowe']
 
 #class MySignupForm(UserCreationForm):
     #email = forms.EmailField(required=True)
