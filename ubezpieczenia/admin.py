@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Ubezpieczenie
-from .models import Ubezpieczenie, DodatkoweInfo, Ocena, Obiekt_ubezpieczony
+from .models import Ubezpieczenie, DodatkoweInfo, Ocena, Obiekt_ubezpieczony, Zamowienia
 #admin.site.register(Ubezpieczenie)
 
 @admin.register(Ubezpieczenie)

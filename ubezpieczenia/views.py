@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Ubezpieczenie
-from .forms import UbezpieczenieForm, OcenaForm #, MySignupForm
+from .forms import UbezpieczenieForm, OcenaForm, ZamowieniaForm #, MySignupForm
 from django.contrib.auth.decorators import login_required
 
 def test_response(request):
@@ -84,3 +84,8 @@ def usun_ubezpieczenie(request, id):
 
 
 
+def zlozenie_zamowienia(request):
+    form = ZamowieniaForm(request.POST or None, request.FILES or None)
+    if form.is_valid():
+        form.save()
+    return render(request, 'zamowienie.html', {'form': form})
