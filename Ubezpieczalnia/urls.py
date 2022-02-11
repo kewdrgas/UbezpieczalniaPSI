@@ -3,7 +3,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from ubezpieczenia.views import test_response, wszystkie_ubezpieczenia, login, index, ocena_ubezpieczenia, nowe_ubezpieczenie, edytuj_ubezpieczenie, usun_ubezpieczenie, ubezpieczenie, register
+from ubezpieczenia.views import test_response, wszystkie_ubezpieczenia, login, index, ocena_ubezpieczenia, nowe_ubezpieczenie, edytuj_ubezpieczenie, usun_ubezpieczenie, ubezpieczenie, register,zlozenie_zamowienia
 
 
 urlpatterns = [
@@ -18,6 +18,7 @@ urlpatterns = [
     path('nowe_ubezpieczenie/', nowe_ubezpieczenie, name="nowe_ubezpieczenie"),
     path('edytuj_ubezpieczenie/<int:id>/', edytuj_ubezpieczenie, name="edytuj_ubezpieczenie"),
     path('register/', register, name = "register"),
+        path('zlozenie_zamowienia/', zlozenie_zamowienia, name="zlozenie_zamowienia"),
     path('ubezpieczenie/<int:id>/', ubezpieczenie, name="ubezpieczenie"),
     path('usun_ubezpieczenie/<int:id>/', usun_ubezpieczenie, name="usun_ubezpieczenie")
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

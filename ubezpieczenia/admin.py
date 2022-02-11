@@ -14,3 +14,4 @@ class UbezpiecznieAdmin(admin.ModelAdmin):
 admin.site.register(DodatkoweInfo)
 admin.site.register(Obiekt_ubezpieczony)
 admin.site.register(Ocena)
+admin.site.register(Zamowienia)
