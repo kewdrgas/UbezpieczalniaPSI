@@ -15,21 +15,22 @@ class UbezpieczenieForm(ModelForm):
        fields = ['tytul', 'opis', 'premiera', 'data_zakonczenia', 'znizka', 'kategoria', 'plakat', 'dodatkowe']
 
 
-#class MySignupForm(UserCreationForm):
-    #email = forms.EmailField(required=True)
+class MySignupForm(UserCreationForm):
+    email = forms.EmailField(required=True)
 
-   # class Meta:
-    #        model = User
-    #        fields = ('email', 'password1', 'password2')
+    class Meta:
+            model = User
+            fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
 
-   # def save(self, commit=True):
-    #    user = super(MySignupForm, self).save(commit=False)
-    #    user.email = self.cleanned_data['email']
-    #    user.username = self.cleanned_data['email']
+    def save(self, commit=True):
+        user = super(MySignupForm, self).save(commit=False)
 
-     #   if commit:
-    #        user.save()
-     #   return user
+        #user.email = self.cleanned_data['email']
+        #user.username = self.cleaned_data['username']
+
+        if commit:
+            user.save()
+
 
 
 
