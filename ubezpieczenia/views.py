@@ -7,15 +7,19 @@ def test_response(request):
     wszystkie = Ubezpieczenie.objects.all()
     return HttpResponse("To jest nasz pierwszy test")
 
-#def register(request):
+def register(request):
 
-     #   if request.method == 'POST':
-       #     form = MySignupForm(request.POST)
-       #     if form.is_valid():
-        #        user = form.save()
+        if request.method == 'POST':
+            form = MySignupForm(request.POST)
 
-       # form = MySignupForm()
-      #  return render(request, 'registration/rejestracja.html', {'form': form} )
+
+
+            if form.is_valid():
+                user = form.save()
+
+
+        form = MySignupForm()
+        return render(request, 'registration/rejestracja.html', {'form': form})
 
 def wszystkie_ubezpieczenia(request):
     wszystkie = Ubezpieczenie.objects.all()
