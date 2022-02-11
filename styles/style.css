@@ -2,17 +2,23 @@
 body {
   color: black;
   margin: 0;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
+}
+
+* {
+  color: #1d1d1b;
 }
 
 a {
   text-decoration: none !important;
-  color: black !important;
+  color: #1d1d1b;
 }
 
 .nav-link,
 .nav-item {
-  color: black !important;
+  margin-right: 15px;
 }
 
 .login__headerImage {
@@ -48,4 +54,103 @@ a {
   background-color: red;
   margin-right: 10px;
 }
-/*# sourceMappingURL=style.css.map */
+
+.hero {
+  width: 100%;
+}
+
+.hero h2 {
+  text-align: center;
+}
+
+.navbar {
+  padding: 5px 0px;
+  background-color: #fff;
+  -webkit-box-shadow: 0 5px 15px #787bd9;
+          box-shadow: 0 5px 15px #787bd9;
+}
+
+.navbar a {
+  font-size: 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.navbar .menu--button {
+  display: inline-block !important;
+}
+
+.button {
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.button__whitered {
+  line-height: 1.1875;
+  background: #fff;
+  border: 1px solid #e90039;
+  border-radius: 6px;
+  background: white;
+  color: #e90039;
+  padding: 15px 30px;
+  -webkit-transition: background 0.5s linear;
+  transition: background 0.5s linear;
+  position: relative;
+  z-index: 1;
+}
+
+.button__red {
+  line-height: 1.1875;
+  color: #fff;
+  border: 1px solid #e90039;
+  border-radius: 6px;
+  background: #e90039;
+  padding: 15px 30px;
+  -webkit-transition: background 0.5s linear;
+  transition: background 0.5s linear;
+  position: relative;
+  z-index: 1;
+}
+
+img {
+  width: 100%;
+}
+
+.ubezpieczenie {
+  position: relative;
+}
+
+.ubezpieczenie__content {
+  height: 100%;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.ubezpieczenie .row {
+  margin-bottom: 25px;
+}
+
+@media (min-width: 768px) {
+  .ubezpieczenie__desc {
+    max-width: 750px;
+    margin: auto;
+  }
+}
+
+.ubezpieczenie__heading span, .ubezpieczenie__category span {
+  color: #e90039;
+}

@@ -15,37 +15,7 @@
   </head>
   <body>
 
-    <ul class="nav m-4 justify-content-between">
-      <div class="d-flex align-items-baseline">
-        <li class="nav-item ">
-          <a class="d-flex align-items-baseline" href="index.html">
-            <div class="redBox"></div>
-            <h4>Ubezpieczenia</h4>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="profile.html">Profil</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">About us</a>
-        </li>
-      </div>
-
-      <li class="float-end">
-        <!--<a href="registration/login.html" class="btn btn-outline-danger" type="submit">Logout</a> -->
-
-          {% if user.is_authenticated %}
-              Zalogowano {{ user.username }}<br>
-      <a href="{% url 'logout' %}">Logout</a>
-          {% else %}
-      <a href="{% url 'login' %}">Login</a>
-          {% endif %}
-      </li>
-    </ul>
-
-    <div class="container bg-light rounded-3 p-5 mb-4">
-      <h2 class="display-3">Nasze najlepsze ubezpieczenia!</h2>
-    </div>
+{% include "nav.html" %}
 
     <div class="container"><div class="row">
                             <a href="{% url 'nowe_ubezpieczenie'%}">Dodaj nową ofertę ubezpieczenia</a>
