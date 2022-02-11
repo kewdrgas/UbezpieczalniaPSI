@@ -6,6 +6,7 @@ from django.contrib.auth import views as auth_views
 from ubezpieczenia.views import test_response, wszystkie_ubezpieczenia, login, index, ocena_ubezpieczenia, nowe_ubezpieczenie, edytuj_ubezpieczenie, usun_ubezpieczenie, register
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('test/', test_response),
