@@ -1,25 +1,33 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Ubezpieczenie
-from .forms import UbezpieczenieForm, OcenaForm, ZamowieniaForm, MySignupForm
+from .forms import UbezpieczenieForm, OcenaForm, ZamowieniaForm, MySignupForm#, UserUpdateForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login, authenticate
 
 def test_response(request):
     wszystkie = Ubezpieczenie.objects.all()
     return HttpResponse("To jest nasz pierwszy test")
 
-def register(request):
+def register(response):
 
-        if request.method == 'POST':
-            form = MySignupForm(request.POST)
-
-
-
+        if response.method == 'POST':
+            form = MySignupForm(response.POST)
             if form.is_valid():
                 user = form.save()
+                return redirect("/login")
+        else:
+            form = MySignupForm()
 
+        return render(response, 'registration/rejestracja.html', {'form': form})
 
-        form = MySignupForm()
-        return render(request, 'registration/rejestracja.html', {'form': form})
+#@login_required
+#def profile(request, username):
+  #     form = UserUpdateForm(request.POST, instance=request.user)
+
+    #    if form.is_valid():
+      #      user = form.save()
+      #      messages.success(request, 'Twój profil został zaktualizowany!')
+       #     return redirect('profile.html')
 
 def wszystkie_ubezpieczenia(request):
     wszystkie = Ubezpieczenie.objects.all()
