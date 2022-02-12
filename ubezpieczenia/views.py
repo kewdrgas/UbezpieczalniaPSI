@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Ubezpieczenie
-from .forms import UbezpieczenieForm, OcenaForm, ZamowieniaForm #, MySignupForm
+from .forms import UbezpieczenieForm, OcenaForm, ZamowieniaForm, MySignupForm
 from django.contrib.auth.decorators import login_required
 
 def test_response(request):
