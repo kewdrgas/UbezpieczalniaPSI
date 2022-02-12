@@ -40,7 +40,7 @@
           <tbody>
             {% for ubezpieczenie in ubezpieczenie %}
             <tr>
-              <td>{{ ubezpieczenie.tytul}}</td>
+              <td><a href="{% url 'ubezpieczenie' ubezpieczenie.id %}">{{ ubezpieczenie.tytul}}</a></td>
               <td>{{ ubezpieczenie.kategoria}}</td>
                <td><a href="{% url 'zlozenie_zamowienia' %}">Zamów</a></td>
                <td><a href="{% url 'ocena_ubezpieczenia' %}">Oceń</a></td>
