@@ -28,8 +28,12 @@ def wszystkie_ubezpieczenia(request):
 def login(request):
     return render(request, 'registration/login.html')
 
-def index(request):
-    wszystkie = Ubezpieczenie.objects.all()
+def index(request, type='none'):
+    if type=='none':
+        wszystkie = Ubezpieczenie.objects.all()
+    else:
+        wszystkie = Ubezpieczenie.objects.kategoria()
+
     return render(request, 'index.html', {'ubezpieczenie': wszystkie})
 
 def ocena_ubezpieczenia(request):
@@ -40,6 +44,7 @@ def ocena_ubezpieczenia(request):
 
 
     return render(request, 'ocena.html', {'form': form})
+
 def ubezpieczenie(request, id):
     ubezpieczenie = get_object_or_404(Ubezpieczenie, pk=id)
     return render(request,'ubezpieczenie.html', {'ubezpieczenie': ubezpieczenie})
@@ -56,6 +61,7 @@ def nowe_ubezpieczenie(request):
 
     return render(request, 'ubezpieczenie_form.html', {'form': form})
 
+
 @login_required
 def edytuj_ubezpieczenie(request, id):
     ubezpieczenie = get_object_or_404(Ubezpieczenie, pk=id)
@@ -68,6 +74,7 @@ def edytuj_ubezpieczenie(request, id):
 
     return render(request, 'ubezpieczenie_form.html', {'form': form})
 
+
 @login_required
 def usun_ubezpieczenie(request, id):
 
@@ -77,11 +84,7 @@ def usun_ubezpieczenie(request, id):
         ubezpieczenie.delete()
         return redirect(index)
 
-
     return render(request, 'potwierdzenie.html', {'ubezpieczenie': ubezpieczenie})
-
-
-
 
 
 def zlozenie_zamowienia(request):

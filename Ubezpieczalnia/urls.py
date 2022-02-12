@@ -13,6 +13,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name = "logout"),
     #path('register/', view.register, name = "register"),
     path('index/', index, name="index"),
+    path('index/<kategoria>', index, name="index"),
     path('ocena/', ocena_ubezpieczenia, name="ocena_ubezpieczenia"),
     path('wszystkie_ubezpieczenia/', wszystkie_ubezpieczenia, name="wszystkie_ubezpieczenia"),
     path('nowe_ubezpieczenie/', nowe_ubezpieczenie, name="nowe_ubezpieczenie"),

@@ -7,11 +7,11 @@ from .models import Ubezpieczenie, DodatkoweInfo, Ocena, Obiekt_ubezpieczony, Za
 class UbezpiecznieAdmin(admin.ModelAdmin):
     # fields = ["tytul", "opis", "rok"]
     # exclude = ["opis"]
-    list_display = ["tytul", "znizka", "premiera", "data_zakonczenia"]
-    list_filter = ("znizka", "premiera", "data_zakonczenia")
+    list_display = ["tytul", "znizka", "premiera", "data_zakonczenia", "kategoria"]
+    list_filter = ("znizka", "premiera", "data_zakonczenia", "kategoria")
     search_fields = ("tytul", "opis")
 
-admin.site.register(DodatkoweInfo)
+#admin.site.register(DodatkoweInfo)
 admin.site.register(Obiekt_ubezpieczony)
 admin.site.register(Ocena)
 admin.site.register(Zamowienia)

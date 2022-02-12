@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User, AbstractUser
 
 # Create your models here.
 
@@ -21,7 +22,14 @@ class Ubezpieczenie(models.Model):
     data_zakonczenia = models.DateField(null=True, blank=True)
     znizka = models.DecimalField(max_digits=4, decimal_places=2,
                                       null=True, blank=True)
-    kategoria = models.TextField(default="")
+    KATEGORIA = {
+        (0, 'Inne'),
+        (1, 'Samochód'),
+        (2, 'Dom'),
+        (3, 'Zdrowotne'),
+        (4, 'Elektronika'),
+    }
+    kategoria = models.PositiveSmallIntegerField(default=0, choices=KATEGORIA)
     plakat = models.ImageField(upload_to="plakaty")
     dodatkowe = models.OneToOneField(DodatkoweInfo, on_delete=models.CASCADE, null=True, blank=True)
 
@@ -41,6 +49,10 @@ class Obiekt_ubezpieczony(models.Model):
 class Zamowienia(models.Model):
     imie = models.CharField(max_length=32)
     nazwisko = models.CharField(max_length=32)
+    uzytkownik = models.ManyToManyField(User, related_name="Uzytkownik")
     ubezpieczenie = models.ManyToManyField(Ubezpieczenie, related_name="Zamowienia")
     dodadkowy_opis = models.TextField(default="")
     dane_kontaktowe = models.TextField(default="")
+
+    def __str__(self):
+        return self.uzytkownik
