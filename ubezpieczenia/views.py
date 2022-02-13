@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
+
 from .models import Ubezpieczenie, Zamowienia, Ocena
-from .forms import UbezpieczenieForm, OcenaForm, ZamowieniaForm, MySignupForm, UserUpdateForm
+from .forms import UbezpieczenieForm, OcenaForm, ZamowieniaForm, MySignupForm
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 
@@ -14,22 +16,20 @@ def register(response):
             form = MySignupForm(response.POST)
             if form.is_valid():
                 user = form.save()
-
                 return redirect("/login")
         else:
             form = MySignupForm()
 
         return render(response, 'registration/rejestracja.html', {'form': form})
 
-@login_required
-def profile(request, username):
-    if request.method == 'POST':
-        form = UserUpdateForm(request.POST, instance=request.user)
+#@login_required
+#def profile(request, username):
+  #     form = UserUpdateForm(request.POST, instance=request.user)
 
-        if form.is_valid():
-            user = form.save()
-            messages.success(request, 'Twój profil został zaktualizowany!')
-            return redirect('profile.html')
+    #    if form.is_valid():
+      #      user = form.save()
+      #      messages.success(request, 'Twój profil został zaktualizowany!')
+       #     return redirect('profile.html')
 
 def wszystkie_ubezpieczenia(request):
     wszystkie = Ubezpieczenie.objects.all()
@@ -38,8 +38,12 @@ def wszystkie_ubezpieczenia(request):
 def login(request):
     return render(request, 'registration/login.html')
 
-def index(request):
-    wszystkie = Ubezpieczenie.objects.all()
+def index(request, type='none'):
+    if type=='none':
+        wszystkie = Ubezpieczenie.objects.all()
+    else:
+        wszystkie = Ubezpieczenie.objects.kategoria()
+
     return render(request, 'index.html', {'ubezpieczenie': wszystkie})
 
 def ocena_ubezpieczenia(request):
@@ -50,6 +54,7 @@ def ocena_ubezpieczenia(request):
 
 
     return render(request, 'ocena.html', {'form': form})
+
 @login_required
 def ubezpieczenie(request, id):
     ubezpieczenie = get_object_or_404(Ubezpieczenie, pk=id)
@@ -83,6 +88,7 @@ def nowe_ubezpieczenie(request):
 
     return render(request, 'ubezpieczenie_form.html', {'form': form})
 
+
 @login_required
 def edytuj_ubezpieczenie(request, id):
     ubezpieczenie = get_object_or_404(Ubezpieczenie, pk=id)
@@ -95,6 +101,7 @@ def edytuj_ubezpieczenie(request, id):
 
     return render(request, 'ubezpieczenie_form.html', {'form': form})
 
+
 @login_required
 def usun_ubezpieczenie(request, id):
 
@@ -104,11 +111,7 @@ def usun_ubezpieczenie(request, id):
         ubezpieczenie.delete()
         return redirect(index)
 
-
     return render(request, 'potwierdzenie.html', {'ubezpieczenie': ubezpieczenie})
-
-
-
 
 
 def zlozenie_zamowienia(request):
