@@ -28,17 +28,84 @@
               <h3 class="ubezpieczenie__heading">Tytuł: <span>{{ubezpieczenie.tytul}}</span></h3>
               <p class="ubezpieczenie__category">Kategoria: <span>{{ubezpieczenie.kategoria}}</span></p>
               <div class="ubezpieczenie__CTA">
-                              <a href="" class="button button__red">Zamów</a>
+                              <div  class="button button__red">Zamów</div>
+                              <div  class="button button__whitered">Dodaj opinię</div>
               </div>
             </div>
             </div>
           </div>
           <div class="ubezpieczenie__desc">{{ubezpieczenie.opis}}</div>
         </div>
-                  <a style="position: absolute; right:5%" class="button button__whitered" href="{% url 'index' %}">Cofnij</a>
+        <a style="position: absolute; right:5%" class="button button__whitered" href="{% url 'index' %}">Cofnij</a>
+        <div  class="opinie">
+          <div class="opinie__container"> Opinie
+            {% block wszystkieOpinie %}
+              {% if wszystkieOpinie %}
+                {% for ocena in wszystkieOpinie %}
+                  <div class="opinie__opinia">
+                      <div class="opinie__ocena">{{ocena.gwiazdki}}/5</div>
+                      <div class="opinie__tresc">{{ocena.recenzja}}</div>
+                    </div>
+                {% endfor %}
+              {% endif %}
+            {% endblock %}
+          </div>
+        </div>
       </div>
-
+    </div>
+    <div class="order">
+      <div class="order__container">
+        <h4 class="order__heading">Zamówienie</h4>
+          <form  method="POST" class="order__form">
+            {% csrf_token %}
+            <div class="form-group">
+              <input type="hidden" name="ubezpieczenie" value={{ubezpieczenie.id  }}>
+              <label for="first_name" class="order__label">Imię</label>
+              <input type="text" required name="first_name" class="form-control" >
+              <label for="last_name"  class="order__label">Nazwisko</label>
+              <input type="text" name="last_name"  required class="form-control">
+               <label for="description" required class="order__label">Opis przedmiotu ubezpieczanego</label>
+              <textarea name="description" required  rows="4" class="form-control"></textarea>
+              <label for="contact" required class="order__label">   Dane kontaktowe</label>
+              <textarea name="contact"  required rows="4" class="form-control"></textarea>
+              <input type="submit" class="button button__red" value="Złóz zamówienie">
+            </div>
+          </form>
+      </div>
+    </div>
+    <div class="ocena">
+      <div class="ocena__container">
+        <h4 class="ocena__heading">Zamówienie</h4>
+          <form  method="POST" class="ocena__form">
+            {% csrf_token %}
+            <div class="form-group">
+              <input type="hidden" name="ubezpieczenie" value={{ubezpieczenie.id  }}>
+              <label for="recenzja" class="ocena__label">Treść oceny</label>
+              <input type="textarea" required name="recenzja" class="form-control" >
+              <label for="gwiazdki"  class="ocena__label">Gwiazdki</label>
+              <input type="number" min="1" max="5" name="gwiazdki"  required class="form-control">
+              <input type="submit" class="button button__red" value="Dodaj opinię">
+            </div>
+          </form>
+      </div>
     </div>
 
   </body>
+  <script>
+    var cta = document.querySelector('.ubezpieczenie__CTA .button__red');
+    cta.addEventListener('click',()=>{
+      popup = document.querySelector('.order');
+      popup.classList.toggle('active');
+    });
+        var ctaOpinia = document.querySelector('.ubezpieczenie__CTA .button__whitered');
+    ctaOpinia.addEventListener('click',()=>{
+      popup = document.querySelector('.ocena');
+      popup.classList.toggle('active');
+    });
+    var exit = document.querySelector('.message__exit');
+    exit.addEventListener('click',()=>{
+      message = document.querySelector('.message');
+      message.style.display="none";
+    })
+    </script>
 </html>

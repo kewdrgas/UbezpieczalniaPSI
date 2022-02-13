@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Ubezpieczenie
+from .models import Ubezpieczenie, Zamowienia, Ocena
 from .forms import UbezpieczenieForm, OcenaForm, ZamowieniaForm, MySignupForm, UserUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
@@ -50,9 +50,26 @@ def ocena_ubezpieczenia(request):
 
 
     return render(request, 'ocena.html', {'form': form})
+@login_required
 def ubezpieczenie(request, id):
     ubezpieczenie = get_object_or_404(Ubezpieczenie, pk=id)
-    return render(request,'ubezpieczenie.html', {'ubezpieczenie': ubezpieczenie})
+    wszystkieOpinie= Ocena.objects.all().filter(ubezpieczenie=ubezpieczenie.id)
+    if request.method == "POST":
+        data = request.POST
+        if data.get("contact"):
+            zamowienie = Zamowienia(imie=data.get("first_name"),nazwisko=data.get("last_name"),dodadkowy_opis=data.get("description"),dane_kontaktowe=data.get("contact"))
+            zamowienie.save()
+            zamowienie.ubezpieczenie.add(data.get("ubezpieczenie"))
+            zamowienie.save()
+            wszystkie = Ubezpieczenie.objects.all()
+            return render(request, 'index.html', {'ubezpieczenie': wszystkie ,'wszystkieOpinie':wszystkieOpinie,'tresc_wiadomosci': "Twoje zamówienie zostało dodane! Wkrótce się z Tobą skontaktujemy ;)"}) 
+        else:
+            ocena = Ocena(recenzja=data.get("recenzja"),gwiazdki=data.get("gwiazdki"),ubezpieczenie_id=data.get("ubezpieczenie"))
+            ocena.save()
+            wszystkie = Ubezpieczenie.objects.all()
+            return render(request, 'index.html', {'ubezpieczenie': wszystkie ,'wszystkieOpinie':wszystkieOpinie,'tresc_wiadomosci': "Dziękujemy za dodanie opinii ;)"}) 
+
+    return render(request,'ubezpieczenie.html', {'ubezpieczenie': ubezpieczenie,'wszystkieOpinie':wszystkieOpinie})
 
 @login_required
 def nowe_ubezpieczenie(request):

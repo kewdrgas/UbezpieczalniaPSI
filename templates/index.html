@@ -15,20 +15,19 @@
   </head>
   <body>
 
-{% include "nav.html" %}
-
+    {% include "nav.html" %}
+    {% block tresc_wiadomosci %}
+      {% if tresc_wiadomosci %}
+        <div class="message">
+          <div class="message__container">
+            <div class="message__text">{{ tresc_wiadomosci }}</div>
+            <div class="message__exit">X</div>
+          </div>
+        </div>
+      {% endif %}
+    {% endblock %}
     <div class="container"><div class="row">
-                            <a href="{% url 'nowe_ubezpieczenie'%}">Dodaj nową ofertę ubezpieczenia</a>
-      <div class="col-md-2">
-        <nav class="nav flex-column">
-          <a class="nav-link text-danger" aria-current="page" href="#"><b>Wszystkie ubezpieczenia</b></a>
-          <a class="nav-link" href="#">Samochodowe</a>
-          <a class="nav-link" href="#">Nieruchomości</a>
-          <a class="nav-link" href="#">Zdrowotne</a>
-          <a class="nav-link" href="#">Elektornika</a>
-          <a class="nav-link" href="#">Inne</a>
-        </nav>
-      </div>
+
       <div class="col-md-10">
         <table class="table">
           <thead>
@@ -42,22 +41,23 @@
             <tr>
               <td><a href="{% url 'ubezpieczenie' ubezpieczenie.id %}">{{ ubezpieczenie.tytul}}</a></td>
               <td>{{ ubezpieczenie.kategoria}}</td>
-               <td><a href="{% url 'zlozenie_zamowienia' %}">Zamów</a></td>
-               <td><a href="{% url 'ocena_ubezpieczenia' %}">Oceń</a></td>
-
-
-
             </tr>
                 {% endfor %}
           </tbody>
         </table>
       </div>
     </div>
-
+    
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
+    <script>    var exit = document.querySelector('.message__exit');
+    exit.addEventListener('click',()=>{
+      message = document.querySelector('.message');
+      message.style.display="none";
+    })
+    </script>
   </body>
 </html>
