@@ -16,12 +16,6 @@
             <h4>Ubezpieczenia</h4>
           </>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="profile.html">Profil</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">About us</a>
-        </li>
       </ul>
     </div>
 
@@ -32,9 +26,11 @@
         <li class="nav-item">
           {% if user.is_authenticated %} Zalogowano {{ user.username }}
         </li>
-        <a class="button button__whitered" href="{% url 'logout' %}">Logout</a>
+        <a class="button button__whitered" href="{% url 'logout' %}"
+          >Wyloguj się</a
+        >
         {% else %}
-        <a class="button button__red" href="{% url 'login' %}">Login</a>
+        <a class="button button__red" href="{% url 'login' %}">Zaloguj się</a>
         {% endif %}
       </div>
     </ul>

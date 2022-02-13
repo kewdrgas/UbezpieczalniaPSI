@@ -130,4 +130,108 @@ img {
       color: rgb(233, 0, 57);
     }
   }
+  &__CTA {
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+}
+.order {
+  position: fixed;
+  left: 50%;
+  display: none;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgb(233, 0, 57);
+  z-index: 100;
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
+  width: 1000px;
+  padding: 30px 40px;
+  &__heading {
+    text-align: center;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  .button {
+    margin: auto;
+    margin-top: 15px;
+  }
+  &.active {
+    display: block;
+  }
+}
+.message {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgb(233, 0, 57);
+  z-index: 100;
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
+  width: 320px;
+  padding: 30px 40px;
+  &__container {
+    position: relative;
+  }
+  &__exit {
+    position: absolute;
+    right: 5px;
+    top: -27px;
+  }
+}
+.ocena {
+  position: fixed;
+  left: 50%;
+  display: none;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgb(233, 0, 57);
+  z-index: 100;
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
+  width: 1000px;
+  padding: 30px 40px;
+  &__heading {
+    text-align: center;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  .button {
+    margin: auto;
+    margin-top: 15px;
+  }
+  &.active {
+    display: block;
+  }
+}
+.opinie {
+  &__container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+  }
+  &__opinia {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0px;
+    padding: 20px;
+    width: 500px;
+    border: 1px solid rgb(233, 0, 57);
+  }
+  &__ocena {
+    min-width: 100px;
+  }
+  &__tresc {
+    text-align: left;
+  }
 }

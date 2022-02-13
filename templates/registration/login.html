@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,21 +14,24 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+        {% load crispy_forms_tags %}
     <title>Document</title>
   </head>
   <body>
     <div class="customNavbar d-flex align-items-baseline">
       <div class="redBox"></div>
       <h4>Ubezpieczenia</h4>
+                  <a style="margin-left:180px" class="button button__whitered" href="{% url 'register' %}">Zarejestruj się</a>
     </div>
     <div class="container-fluid d-flex">
       <div class="w-50 vh-100 d-flex justify-content-center align-items-center">
+        
         <form method= "post" <!--action="../index.html"-->
           <div class="mb-3">
 
               {% csrf_token %}
-              {{ form }}
-              <button type="submit">Zaloguj</button>
+             {{ form|crispy }}
+              <button  style="margin-top:15px" class="button button__red" type="submit">Zaloguj</button>
           <!--  <label for="email" class="form-label">Email address</label>
 
             <input
@@ -46,7 +50,9 @@
           > -->
         </form>
       </div>
-      <div>
+  
+      <div style="height:100%" > 
+        
         <img src="{% static 'loginImage.jpg' %}" class="login__headerImage" />
       </div>
     </div>

@@ -1,25 +1,29 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     {% load crispy_forms_tags %}
     <title>Rejestracja</title>
-</head>
-<body>
-{% include "nav.html" %}
+  </head>
+  <body>
+    {% include "nav.html" %}
 
-    <h1>Rejestracja</h1>
-    <div>
-        <form method="post">
-                {% csrf_token %}
-                {{ form|crispy }}
-            <input type="submit" value="Zarejestruj">
-        </form>
-
+    <div class="container">
+      <h1>Rejestracja</h1>
+      <form method="post">
+        {% csrf_token %} {{ form|crispy }}
+        <input
+          style="margin-top: 15px"
+          class="button button_red"
+          type="submit"
+          value="Zarejestruj"
+        />
+      </form>
     </div>
-
-</body>
+  </body>
 </html>
