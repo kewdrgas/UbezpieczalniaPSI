@@ -12,7 +12,7 @@ class OcenaForm(ModelForm):
 class UbezpieczenieForm(ModelForm):
     class Meta:
        model = Ubezpieczenie
-       fields = ['tytul', 'opis', 'premiera', 'data_zakonczenia', 'znizka', 'kategoria', 'plakat', 'dodatkowe']
+       fields = ['tytul', 'opis', 'premiera', 'data_zakonczenia', 'znizka', 'kategoria', 'plakat']
 
 class ZamowieniaForm(ModelForm):
     class Meta:

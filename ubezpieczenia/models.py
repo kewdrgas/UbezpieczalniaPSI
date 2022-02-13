@@ -2,19 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User, AbstractUser
 
 # Create your models here.
-
-class DodatkoweInfo(models.Model):
-    GATUNEK = {
-        (0, 'Inne'),
-        (1, 'Samochód'),
-        (2, 'Dom'),
-        (3, 'Zdrowotne'),
-        (4, 'Elektronika'),
-    }
-    czas_trwania = models.PositiveSmallIntegerField(default=0)
-    gatunek = models.PositiveSmallIntegerField(default=0, choices=GATUNEK)
-
-
 class Ubezpieczenie(models.Model):
     tytul = models.CharField(max_length=64, blank=True)
     opis = models.TextField(default="")
@@ -31,7 +18,6 @@ class Ubezpieczenie(models.Model):
     }
     kategoria = models.PositiveSmallIntegerField(default=0, choices=KATEGORIA)
     plakat = models.ImageField(upload_to="plakaty")
-    dodatkowe = models.OneToOneField(DodatkoweInfo, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return self.tytul
@@ -53,6 +39,4 @@ class Zamowienia(models.Model):
     ubezpieczenie = models.ManyToManyField(Ubezpieczenie, related_name="Zamowienia")
     dodadkowy_opis = models.TextField(default="")
     dane_kontaktowe = models.TextField(default="")
-
-    def __str__(self):
-        return self.uzytkownik
+    

@@ -59,12 +59,14 @@ def ocena_ubezpieczenia(request):
 def ubezpieczenie(request, id):
     ubezpieczenie = get_object_or_404(Ubezpieczenie, pk=id)
     wszystkieOpinie= Ocena.objects.all().filter(ubezpieczenie=ubezpieczenie.id)
+    user = request.user
     if request.method == "POST":
         data = request.POST
         if data.get("contact"):
             zamowienie = Zamowienia(imie=data.get("first_name"),nazwisko=data.get("last_name"),dodadkowy_opis=data.get("description"),dane_kontaktowe=data.get("contact"))
             zamowienie.save()
             zamowienie.ubezpieczenie.add(data.get("ubezpieczenie"))
+            zamowienie.uzytkownik.add(user)
             zamowienie.save()
             wszystkie = Ubezpieczenie.objects.all()
             return render(request, 'index.html', {'ubezpieczenie': wszystkie ,'wszystkieOpinie':wszystkieOpinie,'tresc_wiadomosci': "Twoje zamówienie zostało dodane! Wkrótce się z Tobą skontaktujemy ;)"}) 
